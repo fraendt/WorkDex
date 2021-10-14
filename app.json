@@ -7,5 +7,12 @@
       "**/*"
     ]
   },
-  "name": "image-schedule"
+  "name": "image-schedule",
+  "web": {
+    "build": {
+      "babel": {
+        "include": ["react-router-native"]
+      }
+    }
+  }
 }
