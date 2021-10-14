@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "image-schedule",
+    "slug": "image-schedule",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "image-schedule"
+}
