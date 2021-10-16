@@ -3,7 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const Home = ({ navigation }) => {
   return (
-    <Text>this is the home page</Text>
+    <View>
+      <Text>this is the home page</Text>
+    </View>
   )
 }
 

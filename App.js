@@ -29,7 +29,7 @@ export default function App() {
       <Drawer.Navigator>
         <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Schedule" component={Schedule} />
-        <Drawer.Screen name="Camera" component={CameraPage} />
+        <Drawer.Screen name="Camera" component={CameraPage} options={{headerShown: false}} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
