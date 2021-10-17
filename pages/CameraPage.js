@@ -1,9 +1,16 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { Camera } from 'expo-camera'
-import { useIsFocused } from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/Ionicons'
-import { AutoFocus } from 'expo-camera/build/Camera.types'
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Camera } from 'expo-camera';
+import { useIsFocused } from '@react-navigation/native';
+// import Icon from 'react-native-vector-icons/Ionicons';
+//import Icon from 'react-native-vector-icons/MaterialIcons';
+import {MaterialIcons, Ionicons} from 'react-native-vector-icons';
+console.log(MaterialIcons, Ionicons)
+
+import { AutoFocus } from 'expo-camera/build/Camera.types';
+import UserContext from '../components/UserContext';
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -20,41 +27,49 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'relative',
-    fontSize: '10rem',
+    fontSize: 160,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
   flip: {
     position: 'absolute',
-    fontSize: '5rem',
+    fontSize: 80,
     margin: 'auto',
   },
   snap: {
     position: 'absolute',
-    fontSize: '5rem',
-    display: 'block',
+    fontSize: 80,
     bottom: 0,
     justifyContent: 'center',
   },
   snapIcon: {
     position: 'absolute',
-    fontSize: '5rem',
+    fontSize: 80,
     bottom: 0,
   },
-})
+  gallery: {
+    position: 'absolute',
+    fontSize: 80,
+    bottom: 0,
+    right: 0,
+    justifyContent: 'center',
+  },
+});
+
+
 
 const CameraPage = ({ navigation }) => {
-  const [hasPermission, setHasPermission] = useState(null)
-  const [type, setType] = useState(Camera.Constants.Type.back)
-  const isFocused = useIsFocused()
-  const [camera, setCamera] = useState(null)
+  const [hasPermission, setHasPermission] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+  const isFocused = useIsFocused();
+  const [camera, setCamera] = useState(null);
+  const { cachedImages, setCachedImages } = useContext(UserContext);
 
   const takePicture = async () => {
-    console.log(camera)
     if (camera) {
-      let photo = await camera.takePictureAsync()
-      console.log(photo)
+      let photo = await camera.takePictureAsync();
+      setCachedImages([...cachedImages, photo]);
     }
   }
 
@@ -73,41 +88,42 @@ const CameraPage = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      {isFocused && (
-        <Camera
-          style={styles.camera}
-          type={type}
-          ref={(ref) => {
-            setCamera(ref)
-          }}
-        >
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.flip}
-              onPress={() => {
-                setType(
-                  type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back
-                )
-              }}
-            >
-              <Icon
-                name="camera-reverse-outline"
-                color="#fff"
-                style={styles.flip}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.snap} onPress={takePicture}>
-              <Icon
-                name="md-scan-circle-outline"
-                color="#fff"
-                style={styles.snapIcon}
-              />
-            </TouchableOpacity>
-          </View>
-        </Camera>
-      )}
+      { isFocused && 
+      <Camera 
+        style={styles.camera} 
+        type={type} 
+        ref={ref => {
+          setCamera(ref);
+        }}
+      >
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.flip}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}>
+            <Ionicons name='camera-reverse-outline' color='#fff' style={styles.flip}/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.snap}
+            onPress={takePicture}>
+            <Ionicons name='md-scan-circle-outline' color='#fff' style={styles.snapIcon}/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.gallery}
+            onPress={() => navigation.navigate('Gallery')}
+          >
+          
+            <MaterialIcons name='photo-album' color='#fff' style={styles.gallery}/>
+
+          </TouchableOpacity>
+        </View>
+      </Camera>
+    }
     </View>
   )
 }

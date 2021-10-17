@@ -1,9 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import styled from 'styled-components/native'
-import Header from './components/Header'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './pages/Home';
+import Schedule from './pages/Schedule';
+import Icon from 'react-native-vector-icons/Octicons';
+import CameraPage from './pages/CameraPage';
+import UserContext from './components/UserContext';
+import Gallery from './pages/Gallery';
+
 
 import Auth from './pages/Auth'
 import Loading from './pages/Loading'
@@ -15,18 +23,6 @@ import firebaseConfig from './firebase-config'
 
 firebase.initializeApp(firebaseConfig)
 
-const Container = styled.View`
-  flex: 1;
-  background-color: white;
-  align-items: center;
-  justify-content: center;
-`
-const TextStyled = styled.Text`
-  font-size: 18px;
-  color: blue;
-  font-weight: 500;
-`
-
 const AppSwitchNavigator = createSwitchNavigator({
   Loading: Loading,
   Auth: Auth,
@@ -34,15 +30,6 @@ const AppSwitchNavigator = createSwitchNavigator({
 })
 
 const AppNavigator = createAppContainer(AppSwitchNavigator)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
 
 export default function App() {
   return <AppNavigator />

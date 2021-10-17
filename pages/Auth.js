@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   centerText: {
     margin: 'auto',
-    fontFamily: 'Roboto_500Medium',
+    fontFamily: 'Roboto',
     fontSize: '30px',
     display: 'block',
   },
