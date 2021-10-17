@@ -1,6 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 const Home = ({ navigation }) => {
   return (
@@ -10,4 +9,4 @@ const Home = ({ navigation }) => {
   )
 }
 
-export default Home;
+export default Home

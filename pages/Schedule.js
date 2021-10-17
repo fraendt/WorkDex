@@ -1,10 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 const Schedule = ({ navigation }) => {
-  return (
-    <Text>this is the schedule page</Text>
-  )
+  return <Text>this is the schedule page</Text>
 }
 
-export default Schedule;
+export default Schedule

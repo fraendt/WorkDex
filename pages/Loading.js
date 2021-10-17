@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import React, { useEffect } from 'react'
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
 const Loading = ({ navigation: { navigate } }) => {
-
   const loginHandler = () => {
     firebase.auth().onAuthStateChanged((u) => {
       if (u) navigate('Authenticated')
@@ -15,8 +14,7 @@ const Loading = ({ navigation: { navigate } }) => {
 
   useEffect(() => {
     loginHandler()
-  }, []);
-
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -25,7 +23,7 @@ const Loading = ({ navigation: { navigate } }) => {
   )
 }
 
-export default Loading;
+export default Loading
 
 const styles = StyleSheet.create({
   container: {
@@ -34,4 +32,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
