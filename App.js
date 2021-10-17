@@ -1,22 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import Header from './components/Header';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import Home from './pages/Home';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-import Schedule from './pages/Schedule';
-import Icon from 'react-native-vector-icons/Octicons';
-import CameraPage from './pages/CameraPage';
+
 import Auth from './pages/Auth';
+import Loading from './pages/Loading';
+import Authenticated from './pages/Authenticated';
+
+import firebase from 'firebase/app'
+
+import firebaseConfig from './firebase-config'
 
 
-import firebase from "firebase/app";
-import 'firebase/firestore';
+firebase.initializeApp(firebaseConfig)
 
-const Drawer = createDrawerNavigator();
 const Container = styled.View`
   flex: 1;
   background-color: white;
@@ -30,30 +30,14 @@ const TextStyled = styled.Text`
 `;
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBzlzBZ5vuhvgqkMiB9nM1W0gS4NIjZJog",
-  authDomain: "image-schedule.firebaseapp.com",
-  projectId: "image-schedule",
-  storageBucket: "image-schedule.appspot.com",
-  messagingSenderId: "391495645952",
-  appId: "1:391495645952:web:000ee48f0b200c404451e5"
-};
+const AppSwitchNavigator = createSwitchNavigator({
+  Loading: Loading,
+  Auth: Auth,
+  Authenticated: Authenticated
+})
 
-firebase.initializeApp(firebaseConfig);
+const AppNavigator = createAppContainer(AppSwitchNavigator);
 
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Schedule" component={Schedule} />
-        <Drawer.Screen name="Camera" component={CameraPage} options={{headerShown: false}} />
-        <Drawer.Screen name="Auth" component={Auth} />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -63,3 +47,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default function App() {
+  return (
+    <AppNavigator />
+  );
+}

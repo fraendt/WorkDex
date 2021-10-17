@@ -5,13 +5,18 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.image.schedule"
+    }
   },
   "name": "image-schedule",
   "web": {
     "build": {
       "babel": {
-        "include": ["react-router-native"]
+        "include": [
+          "react-router-native"
+        ]
       }
     }
   }
