@@ -47,7 +47,7 @@ const Auth = ({ navigation }) => {
         </View>
         
       </TouchableHighlight> */}
-      <FontAwesome.Button name='google' size={50} onPress={promptAsync}>
+      <FontAwesome.Button name='google' size={50} onPress={()=>{promptAsync()}}>
           Sign in with Google
         </FontAwesome.Button>
     </View>

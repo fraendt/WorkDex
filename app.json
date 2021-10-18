@@ -6,7 +6,8 @@
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.image.schedule"
-    }
+    },
+    "scheme": "imagesched"
   },
   "name": "image-schedule",
   "web": {
