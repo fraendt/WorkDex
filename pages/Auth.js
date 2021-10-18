@@ -6,49 +6,9 @@ import * as WebBrowser from 'expo-web-browser'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { GoogleAuthData } from 'expo-google-sign-in'
+import styles from './css/Styles'
 
 WebBrowser.maybeCompleteAuthSession()
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-    margin: 0,
-    flexWrap: 'none',
-  },
-  button: {
-    borderRadius: '5px',
-    border: '1px solid lightgray',
-    backgroundColor: '#fff',
-    boxShadow: '0 4px 4px -2px #888888',
-    cursor: 'pointer',
-  },
-  buttonChild: {
-    display: 'grid',
-    gridGap: '18px',
-    gridTemplateColumns: '50px 250px',
-    paddingHorizontal: '8px',
-    paddingVertical: '24px',
-  },
-  icon: {
-    backgroundImage:
-      'conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg)',
-    backgroundPosition: '73% 55%',
-    backgroundSize: '150% 150%',
-    backgroundRepeat: 'no-repeat',
-    backgroundClip: 'text',
-    color: 'transparent',
-    margin: 'auto',
-  },
-  centerText: {
-    margin: 'auto',
-    fontFamily: 'Roboto',
-    fontSize: '30px',
-    display: 'block',
-  },
-})
 
 const Auth = ({ navigation }) => {
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
@@ -74,8 +34,8 @@ const Auth = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableHighlight
-        style={styles.button}
+      {/* <TouchableHighlight
+        style={styles.googleButton}
         onPress={promptAsync}
         underlayColor="clear"
       >
@@ -85,7 +45,11 @@ const Auth = ({ navigation }) => {
           </View>
           <Text style={styles.centerText}>Sign in with Google</Text>
         </View>
-      </TouchableHighlight>
+        
+      </TouchableHighlight> */}
+      <FontAwesome.Button name='google' size={50} onPress={promptAsync}>
+          Sign in with Google
+        </FontAwesome.Button>
     </View>
   )
 }
