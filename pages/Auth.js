@@ -11,10 +11,10 @@ import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
 import GoogleDark from '../public/GoogleDark'
 
-
+WebBrowser.maybeCompleteAuthSession()
 
 const Auth = ({ navigation }) => {
-  WebBrowser.maybeCompleteAuthSession()
+  
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     // expoClientId: '391495645952-nkjm6v4e1il9nrpp0nvagtn9pbkd5be8.apps.googleusercontent.com',
     // iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
@@ -46,7 +46,7 @@ const Auth = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableNativeFeedback
+      <TouchableHighlight
         style={styles.googleButton}
         onPress={promptAsync}
         underlayColor="clear"
@@ -55,7 +55,7 @@ const Auth = ({ navigation }) => {
           <GoogleDark />
           <Text style={styles.googleButtonText}>Sign in with Google</Text>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableHighlight>
 
     </View>
   )
