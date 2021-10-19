@@ -1,16 +1,20 @@
 import React, { useEffect, useCallback } from 'react'
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, Image } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import * as Google from 'expo-auth-session/providers/google'
 import * as WebBrowser from 'expo-web-browser'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import { GoogleAuthData } from 'expo-google-sign-in'
 import styles from './css/Styles'
+import GoogleSignInLogo from '../public/GoogleSignInLogo'
+import AppLoading from 'expo-app-loading'
+import { useFonts } from 'expo-font'
+import GoogleDark from '../public/GoogleDark'
 
-WebBrowser.maybeCompleteAuthSession()
+
 
 const Auth = ({ navigation }) => {
+  WebBrowser.maybeCompleteAuthSession()
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     // expoClientId: '391495645952-nkjm6v4e1il9nrpp0nvagtn9pbkd5be8.apps.googleusercontent.com',
     // iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
@@ -32,24 +36,27 @@ const Auth = ({ navigation }) => {
     }
   }, [response])
 
+  let [fontsLoaded] = useFonts({
+    'Roboto': require('../public/fonts/Roboto/Roboto-Medium.ttf'),
+  })
+
+  if (!fontsLoaded) {
+    return <Text>App loading...</Text>
+  }
+
   return (
     <View style={styles.container}>
-      {/* <TouchableHighlight
+      <TouchableNativeFeedback
         style={styles.googleButton}
         onPress={promptAsync}
         underlayColor="clear"
-      >
-        <View style={styles.buttonChild}>
-          <View>
-            <FontAwesome style={styles.icon} name="google" size={50} />
-          </View>
-          <Text style={styles.centerText}>Sign in with Google</Text>
+      > 
+        <View style={{flexDirection: "row"}}>
+          <GoogleDark />
+          <Text style={styles.googleButtonText}>Sign in with Google</Text>
         </View>
-        
-      </TouchableHighlight> */}
-      <FontAwesome.Button name='google' size={50} onPress={()=>{promptAsync()}}>
-          Sign in with Google
-        </FontAwesome.Button>
+      </TouchableNativeFeedback>
+
     </View>
   )
 }

@@ -23,7 +23,6 @@ const Loading = ({ navigation: { navigate } }) => {
   )
 }
 
-export default Loading
 
 const styles = StyleSheet.create({
   container: {
@@ -33,3 +32,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+export default Loading

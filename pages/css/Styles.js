@@ -9,19 +9,23 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   googleButton: {
-    borderRadius: 5,
+    borderRadius: 3,
     // border: '1px solid lightgray',
     borderWidth: 1,
     borderColor: 'lightgray',
-    backgroundColor: '#fff',
+    backgroundColor: '#4285F4',
     shadowColor: '#888888',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 2,
     },
     shadowRadius: 4,
     // boxShadow: '0 4px 4px -2px #888888',
     // cursor: 'pointer',
+  },
+  googleImage: {
+    width: 500,
+    height: 100,
   },
   buttonChild: {
     // display: 'grid',
@@ -40,10 +44,14 @@ const styles = StyleSheet.create({
   //   color: 'transparent',
   //   margin: 'auto',
   // },
-  centerText: {
+  googleButtonText: {
     margin: 'auto',
+    marginLeft: 5,
+    marginRight: 10,
     fontFamily: 'Roboto',
-    fontSize: 30,
+    fontSize: 16,
+    color: "#fff",
+    
   },
 })
 
