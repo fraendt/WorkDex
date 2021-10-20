@@ -6,10 +6,9 @@ import * as WebBrowser from 'expo-web-browser'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import styles from './css/Styles'
-import GoogleSignInLogo from '../public/GoogleSignInLogo'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
-import GoogleDark from '../public/GoogleDark'
+import GoogleLogo from '../components/GoogleLogo' // '../public/assets/google_logo.svg'
 
 WebBrowser.maybeCompleteAuthSession()
 
@@ -48,11 +47,11 @@ const Auth = ({ navigation }) => {
     <View style={styles.container}>
       <TouchableHighlight
         style={styles.googleButton}
-        onPress={promptAsync}
+        onPress={() => {promptAsync()}}
         underlayColor="clear"
       > 
-        <View style={{flexDirection: "row"}}>
-          <GoogleDark />
+        <View style={{ flexDirection: "row", justifyContent: 'center', alignItems: 'center', height: 'auto', flex: 1 }}>
+          <GoogleLogo />
           <Text style={styles.googleButtonText}>Sign in with Google</Text>
         </View>
       </TouchableHighlight>

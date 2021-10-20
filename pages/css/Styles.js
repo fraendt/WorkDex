@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     // border: '1px solid lightgray',
     borderWidth: 1,
     borderColor: 'lightgray',
-    backgroundColor: '#4285F4',
     shadowColor: '#888888',
     shadowOffset: {
       width: 0,
@@ -22,6 +21,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     // boxShadow: '0 4px 4px -2px #888888',
     // cursor: 'pointer',
+    height: '7%',
   },
   googleImage: {
     width: 500,
@@ -45,13 +45,11 @@ const styles = StyleSheet.create({
   //   margin: 'auto',
   // },
   googleButtonText: {
-    margin: 'auto',
     marginLeft: 5,
-    marginRight: 10,
+    marginRight: 15,
     fontFamily: 'Roboto',
     fontSize: 16,
-    color: "#fff",
-    
+    color: "#666666",
   },
 })
 
