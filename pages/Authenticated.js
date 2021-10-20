@@ -9,6 +9,7 @@ import UserContext from '../components/UserContext'
 
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
+import Notify from './Notify'
 
 const Drawer = createDrawerNavigator()
 
@@ -22,6 +23,7 @@ const Authenticated = ({ navigation }) => {
           <Drawer.Screen name="Schedule" component={Schedule} />
           <Drawer.Screen name="Camera" component={CameraPage} options={{headerShown: false}} />
           <Drawer.Screen name="Gallery" component={Gallery} />
+          <Drawer.Screen name="Notifications" component={Notify} />
         </Drawer.Navigator>
       </NavigationContainer>
     </UserContext.Provider>
