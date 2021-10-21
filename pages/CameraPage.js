@@ -1,12 +1,10 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import { useIsFocused } from '@react-navigation/native';
 // import Icon from 'react-native-vector-icons/Ionicons';
 //import Icon from 'react-native-vector-icons/MaterialIcons';
 import {MaterialIcons, Ionicons} from 'react-native-vector-icons';
-console.log(MaterialIcons, Ionicons)
-
 import { AutoFocus } from 'expo-camera/build/Camera.types';
 import UserContext from '../components/UserContext';
 
@@ -32,31 +30,26 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
-  flip: {
-    position: 'absolute',
-    fontSize: 80,
-    margin: 'auto',
-  },
-  snap: {
-    position: 'absolute',
-    fontSize: 80,
-    bottom: 0,
-    justifyContent: 'center',
-  },
   snapIcon: {
     position: 'absolute',
     fontSize: 80,
-    bottom: 0,
+    bottom: 30,
+    left: "50%",
+    marginLeft: -40,
   },
-  gallery: {
+  flipIcon: {
     position: 'absolute',
     fontSize: 80,
-    bottom: 0,
+    top: 30,
+    left: 30,
+  },
+  galleryIcon: {
+    position: 'absolute',
+    fontSize: 80,
+    bottom: 30,
     right: 0,
-    justifyContent: 'center',
   },
 });
-
 
 
 const CameraPage = ({ navigation }) => {
@@ -97,7 +90,7 @@ const CameraPage = ({ navigation }) => {
         }}
       >
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
+          <TouchableNativeFeedback
             style={styles.flip}
             onPress={() => {
               setType(
@@ -106,21 +99,21 @@ const CameraPage = ({ navigation }) => {
                   : Camera.Constants.Type.back
               );
             }}>
-            <Ionicons name='camera-reverse-outline' color='#fff' style={styles.flip}/>
-          </TouchableOpacity>
-          <TouchableOpacity
+            <Ionicons name='camera-reverse-outline' color='#fff' style={styles.flipIcon}/>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
             style={styles.snap}
-            onPress={takePicture}>
+            onPress={() => {takePicture()}}>
             <Ionicons name='md-scan-circle-outline' color='#fff' style={styles.snapIcon}/>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback
             style={styles.gallery}
             onPress={() => navigation.navigate('Gallery')}
           >
           
-            <MaterialIcons name='photo-album' color='#fff' style={styles.gallery}/>
+            <MaterialIcons name='photo-album' color='#fff' style={styles.galleryIcon}/>
 
-          </TouchableOpacity>
+          </TouchableNativeFeedback>
         </View>
       </Camera>
     }
