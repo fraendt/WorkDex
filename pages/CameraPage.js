@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   flipIcon: {
     position: 'absolute',
     fontSize: 80,
-    top: 30,
+    top: '5%',
     left: 30,
   },
   galleryIcon: {
