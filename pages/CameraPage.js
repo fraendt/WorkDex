@@ -28,7 +28,26 @@ const styles = StyleSheet.create({
     fontSize: 160,
     height: '100%',
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
+  },
+  snap: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderWidth: 0,
+  },
+  flip: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderWidth: 0,
+  },
+  gallery: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderWidth: 0,
   },
   snapIcon: {
     position: 'absolute',
