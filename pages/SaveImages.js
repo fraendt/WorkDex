@@ -5,6 +5,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
 import 'firebase/storage'
 
 import { v1 as uuidv1 } from 'uuid'
@@ -21,18 +22,33 @@ const SaveImages = ({ navigation }) => {
     let storageRef = firebase.storage().ref(`${firebase.auth().currentUser.uid}/files`)
 
     cachedImages.map(({ base64 }, idx) => {
-      console.log(idx, base64.substr(22))
-      storageRef.child(`${uuidv1()}`)
+      let fname = uuidv1() + ".png";
+
+      storageRef.child(`${fname}`)                        // save image to firebase storage
         .putString(base64.substr(22), 'base64', {
           contentType: 'image/png'
         })
-        .then(() => {
-          storageRef.child(`${uuidv1()}`).getDownloadURL()
-          .then((url) => {
-            console.log(url)
-          })
+        .then(() => 
+          storageRef.child(`${fname}`).getDownloadURL()
+        )
+        .then(url => {
+          // save url to firestore for referencing later
+          firebase.firestore()
+            .collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .collection('images')
+            .doc(fname)
+            .set({
+              'url': url,
+            })
+        }).then(() => {
+          // done saving
+          console.log("done")
         })
     })
+
+    // prevent duplicate saving
+    setCachedImages([]);
   }
 
   return (
