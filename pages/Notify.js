@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import * as Notifications from 'expo-notifications';
 import { Button, Platform, View, Text } from 'react-native';
 import Constants from 'expo-constants';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 // console.log(Platform.OS)
 // "web" for web
@@ -48,9 +49,13 @@ const Notify = ({ navigation }) => {
 
   return (
     <View>
-      <Button onPress={schedulePushNotification}>
-        notification test
-      </Button>
+      <TouchableHighlight onPress={schedulePushNotification}>
+        <View>
+          <Text>
+            notification test
+          </Text>
+        </View>
+      </TouchableHighlight>
     </View>
   )
 }
